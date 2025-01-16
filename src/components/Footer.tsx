@@ -1,8 +1,13 @@
 import React from 'react'
+import { ModeToggle } from './mode-toggle'
 
 const Footer = () => {
     return (
-        <footer>Footer</footer>
+        <footer>Footer
+            <div>
+                <ModeToggle />
+            </div>
+        </footer>
     )
 }
 
