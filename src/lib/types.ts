@@ -4,3 +4,10 @@ export interface Job {
     type: string;
     salary: string;
   }
+
+
+export interface Service {
+    id: string;
+    name: string;
+    image: string;
+  }

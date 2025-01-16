@@ -3,7 +3,10 @@ import { ModeToggle } from './mode-toggle'
 
 const Footer = () => {
     return (
-        <footer>Footer
+        <footer>
+            <div>
+                Footer
+            </div>
             <div>
                 <ModeToggle />
             </div>
