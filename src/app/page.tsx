@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Infinity, Zap, Calendar, PenTool, Target, Crown, Settings, DollarSign, Users } from 'lucide-react'
 import Testimonials from '@/components/sections/testimonials'
 import HomeHero from "@/components/sections/home-hero"
+import CTASection from "@/components/sections/cta-section"
 
 
 function StarIcon({ className = "" }) {
@@ -31,6 +32,7 @@ export default function HomePage() {
         <Testimonials />
         <Pricing />
         <Benefits />
+        <CTASection />
     </div>
 
 }

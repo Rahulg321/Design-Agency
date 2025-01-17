@@ -41,7 +41,7 @@ const AboutUsPage = () => {
     )
 }
 
-export function CareersSection() {
+function CareersSection() {
     return (
         <section className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -228,7 +228,7 @@ const teamMembers: TeamMember[] = [
     }
 ]
 
-export function AboutTeamSection() {
+function AboutTeamSection() {
     return (
         <section className="bg-background text-foreground py-16">
             <div className="container mx-auto px-4">
