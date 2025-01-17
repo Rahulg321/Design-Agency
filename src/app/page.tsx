@@ -7,6 +7,7 @@ import { Infinity, Zap, Calendar, PenTool, Target, Crown, Settings, DollarSign, 
 import Testimonials from '@/components/sections/testimonials'
 import HomeHero from "@/components/sections/home-hero"
 import CTASection from "@/components/sections/cta-section"
+import FAQSection from "@/components/sections/faq-section"
 
 
 
@@ -19,6 +20,7 @@ export default function HomePage() {
         <Testimonials />
         <Pricing />
         <Benefits />
+        <FAQSection />
         <CTASection />
     </div>
 
@@ -265,7 +267,7 @@ function Capabilities() {
 
 
 
-export function Benefits() {
+function Benefits() {
     const benefits = [
         {
             icon: <Infinity className="h-8 w-8" />,
