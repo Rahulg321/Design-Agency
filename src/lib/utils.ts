@@ -5,8 +5,10 @@ import { twMerge } from "tailwind-merge"
 
 export const menuItems = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
     { name: 'Services', href: '/services' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
   ];
 

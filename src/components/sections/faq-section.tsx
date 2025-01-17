@@ -8,6 +8,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
+import { Textarea } from "../ui/textarea"
 
 export default function FAQSection() {
     return (
@@ -59,11 +60,8 @@ export default function FAQSection() {
                     </AccordionItem>
                 </Accordion>
 
-                <div className="flex gap-4">
-                    <Input
-                        placeholder="Ask us what you want to know..."
-                        className="bg-zinc-800/50 border-none text-white placeholder:text-gray-400"
-                    />
+                <div className="flex flex-col gap-4">
+                    <Textarea placeholder="Ask a question" />
                     <Button className="bg-[#ADFF00] text-black hover:bg-[#ADFF00]/90">
                         Send
                     </Button>

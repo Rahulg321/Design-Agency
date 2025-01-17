@@ -15,7 +15,7 @@ const ServicesPage = () => {
 export default ServicesPage
 
 
-export function ServicesHero() {
+function ServicesHero() {
     return (
         <div>
             <section className="min-h-screen bg-black text-white py-16">
