@@ -9,19 +9,6 @@ import HomeHero from "@/components/sections/home-hero"
 import CTASection from "@/components/sections/cta-section"
 
 
-function StarIcon({ className = "" }) {
-    return (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className={className}
-        >
-            <path d="M12 2L14.4 9.2H22L16.8 13.6L19.2 20.8L12 16.4L4.8 20.8L7.2 13.6L2 9.2H9.6L12 2Z" />
-        </svg>
-    )
-}
-
 
 
 export default function HomePage() {
@@ -38,7 +25,7 @@ export default function HomePage() {
 }
 
 
-export function Pricing() {
+function Pricing() {
     const plans = [
         {
             name: "Standard",
@@ -158,8 +145,7 @@ export function Pricing() {
 
 
 
-
-export function HowWeWork() {
+function HowWeWork() {
     return (
         <section className="w-full bg-[#0A0F0A] px-4 py-16 text-white md:py-24">
             <div className="container mx-auto max-w-7xl">
@@ -235,7 +221,7 @@ export function HowWeWork() {
 
 
 
-export function Capabilities() {
+function Capabilities() {
     const capabilities = [
         ["Web design & UI", "Social media visuals", "Infographics", "Design system", "Email design", "Stationery", "Icons"],
         ["Packaging & merch", "Signage", "Brochures", "Logos & branding", "Digital ads", "Wireframes"]
