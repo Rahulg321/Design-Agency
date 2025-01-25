@@ -13,7 +13,10 @@ import { Tools } from "@/components/new-sections/Tools"
 import { Portfolio } from "@/components/new-sections/Portfolio"
 
 
-
+export const metadata = {
+    title: "Home Page",
+    description: "This is the home page"
+}
 
 export default function HomePage() {
     return <div>
