@@ -1,9 +1,26 @@
-import React from 'react'
+"use client";
 
-const page = () => {
+
+import { UIUXCTA } from '@/components/new-sections/uiux/CTA';
+import { UIUXHero } from '@/components/new-sections/uiux/Hero';
+import { UIUXProcess } from '@/components/new-sections/uiux/Process';
+import { UIUXServices } from '@/components/new-sections/uiux/Services';
+import UIUXTools from '@/components/new-sections/uiux/Tools';
+import { motion } from 'framer-motion';
+
+export default function UIUXServicePage() {
     return (
-        <div>page</div>
-    )
+        <motion.div
+            className="pt-16"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+        >
+            <UIUXHero />
+            <UIUXServices />
+            <UIUXProcess />
+            <UIUXTools />
+            <UIUXCTA />
+        </motion.div>
+    );
 }
-
-export default page
