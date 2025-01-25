@@ -50,7 +50,7 @@ type Metadata = {
     content: string;
   };
 
-  function getMDXData(dir: string): MDXData[] {
+  function getMDXData(dir:string): MDXData[] {
     // returns all the mdx files
     let mdxFiles = getMDXFiles(dir);
     return mdxFiles.map((file) => {

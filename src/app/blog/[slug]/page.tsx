@@ -31,7 +31,6 @@ export async function generateMetadata(props: {
     } = post.metadata;
 
     let ogImage = image ? `${baseUrl}${image}` : `${baseUrl}/images/main-bg.jpg`;
-
     return {
         title,
         description,
