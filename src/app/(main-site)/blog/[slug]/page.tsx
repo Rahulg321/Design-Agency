@@ -2,7 +2,7 @@ import { baseUrl } from "@/app/sitemap";
 import { CircleIndicator } from "@/components/CircleIndicator";
 import { notFound } from "next/navigation";
 import { formatDate, getBlogPosts } from "../util";
-import { CustomMDX } from "../../../../mdx-components";
+import { CustomMDX } from "../../../../../mdx-components";
 
 
 export async function generateStaticParams() {

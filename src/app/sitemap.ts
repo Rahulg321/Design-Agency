@@ -1,4 +1,4 @@
-import { getBlogPosts } from "./blog/util";
+import { getBlogPosts } from "./(main-site)/blog/util";
 
 export const baseUrl = "https://rasdadashulguptadev.in";
 
