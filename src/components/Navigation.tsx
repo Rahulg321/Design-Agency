@@ -51,14 +51,11 @@ export function Navigation() {
                                         </div>
                                     </NavigationMenuContent>
                                 </NavigationMenuItem>
-                                <NavigationMenuItem>
-                                    <NavigationMenuTrigger>Work</NavigationMenuTrigger>
-                                </NavigationMenuItem>
-                                <NavigationMenuItem>
-                                    <NavigationMenuTrigger>About</NavigationMenuTrigger>
-                                </NavigationMenuItem>
                             </NavigationMenuList>
                         </NavigationMenu>
+                        <Link href={"/work"}>Work</Link>
+                        <Link href={"about"}>About</Link>
+                        <Link href={"/pricing"}>Pricing</Link>
                         <Button className="bg-[#F97B5C] hover:bg-[#e66a4d]">Get Started</Button>
                     </div>
 

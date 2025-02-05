@@ -8,7 +8,6 @@ import { Hero } from "@/components/new-sections/Hero"
 import { UseCases } from "@/components/new-sections/UseCases"
 import { Benefits } from "@/components/new-sections/Benefits"
 import { HowItWorks } from "@/components/new-sections/HowItWorks"
-import { Pricing } from "@/components/new-sections/Pricing"
 import { Tools } from "@/components/new-sections/Tools"
 import { Portfolio } from "@/components/new-sections/Portfolio"
 
@@ -19,12 +18,14 @@ export const metadata = {
 }
 
 export default function HomePage() {
-    return <div>
-        <Hero />
+    return <div className="overflow-hidden">
+        <div>
+            <Hero />
+        </div>
+
         <UseCases />
         <Benefits />
         <HowItWorks />
-        <Pricing />
         <Tools />
         <Portfolio />
     </div>
