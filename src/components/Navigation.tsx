@@ -14,8 +14,9 @@ import {
 } from '@/components/ui/navigation-menu';
 
 import Link from 'next/link';
+import { Session } from 'next-auth';
 
-export function Navigation() {
+export function Navigation({session}:{session:Session}) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (

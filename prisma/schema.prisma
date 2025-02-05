@@ -30,6 +30,14 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   isBlocked     Boolean   @default(false)
+
+  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
+  stripePriceId          String?   @map(name: "stripe_price_id")
+  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
+
+  hasActiveSubscription Boolean    @default(false)
+  Payment Payment[]
 }
 
 model Account {
@@ -51,5 +59,34 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([provider, providerAccountId])
+}
+
+
+enum PaymentType {
+  ONE_TIME
+  SUBSCRIPTION
+}
+
+enum PaymentStatus {
+  SUCCEEDED
+  FAILED
+  PENDING
+}
+
+model Payment {
+  id                    String        @id @default(cuid())
+  userId                String
+  user                  User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amount                Float
+  title                 String
+  description           String?
+  currency              String
+  paymentType           PaymentType
+  stripePaymentIntentId String        @unique
+  stripeInvoiceId       String? // Optional for one-time payments
+  stripeSubscriptionId  String? // Optional for subscriptions
+  status                PaymentStatus
+  createdAt             DateTime      @default(now())
+  updatedAt             DateTime      @updatedAt
 }
 

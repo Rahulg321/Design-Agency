@@ -1,6 +1,9 @@
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { User } from "@prisma/client";
+import CheckoutDialog from "./dialogs/CheckoutDialog";
+import Link from "next/link";
 
 interface PricingFeature {
   text: string;
@@ -9,21 +12,38 @@ interface PricingFeature {
 interface PricingCardProps {
   title: string;
   price: string;
+  priceId: string;
   features: PricingFeature[];
   highlighted?: boolean;
   mainFeatures: {
     icon: string;
     text: string;
   }[];
+
+  user: User | null
+
 }
 
 export function PricingCard({
   title,
   price,
+  priceId,
   features,
   highlighted = false,
   mainFeatures,
+  user
 }: PricingCardProps) {
+
+  let userId
+  let userName
+  let userEmail
+
+  if(user){
+    userId = user.id
+    userName = user.name
+    userEmail = user.email;
+  }
+
   return (
     <Card
       className={`relative flex flex-col ${
@@ -76,15 +96,24 @@ export function PricingCard({
         </div>
       </CardContent>
       <CardFooter className="p-6">
-        <Button
-          className={`w-full ${
-            highlighted
-              ? "bg-black text-white hover:bg-gray-800"
-              : "bg-white text-black border border-gray-200 hover:bg-gray-50"
-          }`}
-        >
-          Get Started
-        </Button>
+        {user ? (
+          <div>
+            <CheckoutDialog priceId={priceId} userId={userId!} name={userName || "John DOE"} email={userEmail!}/>
+          </div>
+        ) : (
+          <Button
+            className={`w-full ${
+              highlighted
+                ? "bg-black text-white hover:bg-gray-800"
+                : "bg-white text-black border border-gray-200 hover:bg-gray-50"
+            }`}
+            asChild
+          >
+            <Link href={"/auth/login"}>
+              Get Started
+            </Link>
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );

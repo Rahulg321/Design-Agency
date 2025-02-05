@@ -51,9 +51,9 @@ export default function BlogSection() {
         : blogPosts.filter(post => post.category === selectedCategory)
 
     return (
-        <section className="bg-black px-4 py-16 md:py-24">
+        <section className=" px-4 py-16 md:py-24">
             <div className="mx-auto max-w-7xl">
-                <h1 className="mb-8 text-4xl font-medium text-white md:text-5xl">
+                <h1 className="mb-8 text-4xl font-medium  md:text-5xl">
                     Select your category
                 </h1>
 

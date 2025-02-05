@@ -18,7 +18,7 @@ export default ServicesPage
 function ServicesHero() {
     return (
         <div>
-            <section className="min-h-screen bg-black text-white py-16">
+            <section className="min-h-screen  py-16">
                 <div className="container mx-auto px-4 max-w-6xl">
                     <div className="text-center mb-16">
                         <p className="text-[#ADFF00] mb-4">Our Services</p>

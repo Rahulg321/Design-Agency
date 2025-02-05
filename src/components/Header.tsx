@@ -1,115 +1,252 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { Menu, X } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { menuItems } from '@/lib/utils'
+import clsx from "clsx";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { MdMenu, MdClose } from "react-icons/md";
+import {
+  FiPlus,
+  FiList,
+  FiCheckSquare,
+  FiEdit,
+  FiTrendingUp,
+  FiSearch,
+  FiMail,
+  FiSettings,
+  FiFolder,
+  FiBookOpen,
+} from "react-icons/fi";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ChevronDown, Lock } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ModeToggle } from "./mode-toggle";
+import { Session } from "next-auth";
+import { signOut, useSession } from "next-auth/react";
+import { IconType } from "react-icons/lib";
 
-export default function HeaderWithMenu() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
+type HeaderProps = {
+  className?: string;
+  session: Session | null;
+};
 
-    const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+type NavLinkType = {
+  navlink: string;
+  navlabel: string;
+  icon: any;
+}[];
 
-    return (
-        <>
-            <header className="flex justify-between items-center p-4 shadow-md">
-                <div className="text-2xl font-bold">Logo</div>
-                <Button variant="ghost" size="icon" onClick={toggleMenu} aria-label="Toggle menu">
-                    <Menu className="h-6 w-6" />
-                </Button>
-            </header>
+export const NavLinks: NavLinkType = [
+  { navlink: "/work", navlabel: "Work", icon: FiCheckSquare },
+  { navlink: "/pricing", navlabel: "Pricing", icon: FiTrendingUp },
+  { navlink: "/contact", navlabel: "Contact", icon: FiMail },
+  { navlink: "/services", navlabel: "Services", icon: FiSettings },
+  { navlink: "/projects", navlabel: "Projects", icon: FiFolder },
+  { navlink: "/blog", navlabel: "Blog", icon: FiBookOpen },
+];
+const Header = ({ className, session }: HeaderProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
-            {isMenuOpen && (
-                <div className="fixed inset-0 z-50 flex">
-                    {/* Left Section */}
-                    <div className="w-1/2 bg-[#e2ff00] p-12 flex flex-col">
-                        <div className="mb-16">
-                            <Link
-                                href="/"
-                                className="text-black text-2xl font-medium"
-                                onClick={toggleMenu}
-                            >
-                                Nucleus
-                            </Link>
-                        </div>
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
 
-                        <nav className="flex-1">
-                            <ul className="space-y-8">
-                                {menuItems.map((link) => (
-                                    <li key={link.name}>
-                                        <Link
-                                            href={link.href}
-                                            className="text-black text-5xl hover:opacity-70 transition-opacity font-medium tracking-wide"
-                                            style={{ fontFamily: 'var(--font-space-grotesk)' }}
-                                            onClick={toggleMenu}
-                                        >
-                                            {link.name}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </nav>
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-                        <div className="flex gap-6">
-                            {menuItems.map((link) => (
-                                <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    className="text-black text-sm hover:opacity-70 transition-opacity"
-                                >
-                                    {link.name}
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
+  // Add admin-specific link if user is an admin
+  const isAdmin = session?.user?.role === "ADMIN";
+  const dynamicNavLinks = isAdmin
+    ? [...NavLinks, { navlink: "/admin", navlabel: "Admin", icon: Lock }]
+    : NavLinks;
 
-                    {/* Right Section */}
-                    <div
-                        className="w-1/2 bg-black p-12 flex flex-col"
-                    >
-                        <button
-                            onClick={toggleMenu}
-                            className="self-end text-white hover:opacity-70 transition-opacity"
-                        >
-                            <X className="h-8 w-8" />
-                        </button>
+  return (
+    <header
+      className={clsx(
+        "sticky top-0 z-50 transition-all duration-300",
+        isScrolled ? "bg-background/80 backdrop-blur-md" : "bg-background",
+        "border-b px-4 py-3 lg:px-8",
+        className
+      )}
+    >
+      <nav aria-label="Main-navigation" className="mx-auto max-w-7xl">
+        <ul className="flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <NameLogo />
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden"
+              onClick={() => setIsOpen(true)}
+            >
+              <MdMenu className="h-6 w-6" />
+            </Button>
+          </div>
+          <DesktopMenu pathname={pathname} dyanmicLinks={dynamicNavLinks} />
+          <div className="flex items-center space-x-4">
+            {session ? <ProfileMenu session={session} /> : <AuthDialogNavs />}
+          </div>
+        </ul>
+      </nav>
+      <MobileMenu
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        pathname={pathname}
+        dyanmicLinks={dynamicNavLinks}
+      />
+    </header>
+  );
+};
 
-                        <div className="flex-1 flex flex-col justify-center">
-                            <p className="text-[#e2ff00] mb-4">Got an idea?</p>
-                            <h2
-                                className="text-4xl text-[#e2ff00] mb-8 font-medium"
-                                style={{ fontFamily: 'var(--font-space-grotesk)' }}
-                            >
-                                Let's craft<br />
-                                brilliant together!
-                            </h2>
-                            <Link
-                                href="/contact"
-                                className="inline-flex px-6 py-3 border border-[#e2ff00] text-[#e2ff00] hover:bg-[#e2ff00] hover:text-black transition-colors w-fit"
-                                onClick={toggleMenu}
-                            >
-                                Get in touch
-                            </Link>
-                        </div>
+export default Header;
 
-                        <div className="flex gap-6">
-                            <Link
-                                href="/terms"
-                                className="text-[#e2ff00] text-sm hover:opacity-70 transition-opacity"
-                            >
-                                Terms & Conditions
-                            </Link>
-                            <Link
-                                href="/privacy"
-                                className="text-[#e2ff00] text-sm hover:opacity-70 transition-opacity"
-                            >
-                                Privacy Policy
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            )}
-        </>
-    )
+function NameLogo() {
+  return (
+    <Link
+      href="/"
+      aria-label="Home page"
+      className="text-2xl font-bold text-primary transition-colors hover:text-primary/80"
+    >
+      Pixora Labs
+    </Link>
+  );
+}
+
+function DesktopMenu({
+  pathname,
+  dyanmicLinks,
+}: {
+  pathname: string;
+  dyanmicLinks: NavLinkType;
+}) {
+  return (
+    <div className="hidden space-x-1 md:flex">
+      {dyanmicLinks.map((item, index) => (
+        <Link
+          href={item.navlink}
+          key={index}
+          className={clsx(
+            "flex items-center space-x-1 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent",
+            pathname === item.navlink
+              ? "bg-accent text-accent-foreground"
+              : "text-muted-foreground"
+          )}
+        >
+          <item.icon className="h-4 w-4" />
+          <span>{item.navlabel}</span>
+        </Link>
+      ))}
+    </div>
+  );
+}
+
+function MobileMenu({
+  isOpen,
+  setIsOpen,
+  pathname,
+  dyanmicLinks,
+}: {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+  pathname: string;
+  dyanmicLinks: NavLinkType;
+}) {
+  return (
+    <div
+      className={clsx(
+        "fixed inset-0 z-50 bg-background/80 backdrop-blur-sm md:hidden",
+        isOpen ? "block" : "hidden"
+      )}
+    >
+      <div className="fixed inset-y-0 right-0 w-full max-w-sm border-l bg-background p-6 shadow-lg">
+        <div className="flex items-center justify-between">
+          <NameLogo />
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-muted-foreground"
+            onClick={() => setIsOpen(false)}
+          >
+            <MdClose className="h-6 w-6" />
+          </Button>
+        </div>
+        <nav className="mt-6">
+          <ul className="space-y-2">
+            {dyanmicLinks.map((item, index) => (
+              <li key={index}>
+                <Link
+                  href={item.navlink}
+                  onClick={() => setIsOpen(false)}
+                  className={clsx(
+                    "flex items-center space-x-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent",
+                    pathname === item.navlink
+                      ? "bg-accent text-accent-foreground"
+                      : "text-muted-foreground"
+                  )}
+                >
+                  <item.icon className="h-5 w-5" />
+                  <span>{item.navlabel}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </div>
+  );
+}
+
+function AuthDialogNavs() {
+  return (
+    <div className="hidden space-x-4 md:flex md:items-center">
+      <Link href={"/auth/login"}>Logout</Link>
+    </div>
+  );
+}
+
+function ProfileMenu({ session }: { session: Session }) {
+  const router = useRouter();
+  console.log("session", session);
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger className="flex items-center gap-2">
+        <Avatar>
+          <AvatarImage
+            src={session.user?.image || "https://github.com/shadcn.png"}
+            alt="@shadcn"
+          />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+        <span className="text-baseC flex items-center font-medium">
+          Account <ChevronDown />
+        </span>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuItem
+          onClick={() => {
+            router.push(`/profile/${session.user?.id}`);
+          }}
+        >
+          Profile
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => {
+            signOut();
+          }}
+        >
+          Logout
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
 }

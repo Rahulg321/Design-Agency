@@ -40,7 +40,7 @@ export default function ServicesSection() {
     const [hoveredService, setHoveredService] = useState<number | null>(null)
 
     return (
-        <div className="bg-black min-h-screen p-8">
+        <div className="min-h-screen p-8">
             {/* Categories */}
             <div className="flex flex-wrap gap-2 mb-16">
                 {categories.map((category, index) => (
@@ -50,7 +50,7 @@ export default function ServicesSection() {
                             "px-4 py-2 rounded-full text-sm transition-colors",
                             category.active
                                 ? "bg-[#CCFF00] text-black"
-                                : "bg-zinc-900 text-zinc-400 hover:bg-zinc-800"
+                                : ""
                         )}
                     >
                         {category.name}
@@ -74,7 +74,7 @@ export default function ServicesSection() {
                                 </span>
                                 <div className="flex-1">
                                     <div className="flex items-center gap-4">
-                                        <span className="text-4xl text-white font-light tracking-wide">
+                                        <span className="text-4xl font-light tracking-wide">
                                             {service.name}
                                         </span>
                                         <ArrowUpRight

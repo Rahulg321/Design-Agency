@@ -16,20 +16,10 @@ export const AUTH_ROUTES = [
  *@type{string}
  */
 export const PROTECTED_ROUTES = [
-  "/raw-deals",
-  "/",
-  "/inferred-deals",
-  "/manual-deals",
-  "/published-deals",
-  "/infer",
   "/admin",
 ];
 
 export const PROTECTED_BASE_ROUTES = [
-  "/raw-deals",
-  "/manual-deals",
-  "/published-deals",
-  "/inferred-deals",
   "/admin",
 ];
 

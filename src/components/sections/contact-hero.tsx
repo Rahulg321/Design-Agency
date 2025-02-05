@@ -9,7 +9,7 @@ import { MapPin, Phone, Mail, Youtube, Instagram, Twitter } from 'lucide-react'
 
 export default function ContactHero() {
     return (
-        <section className="min-h-screen bg-black text-white py-16">
+        <section className="min-h-screen py-16">
             <div className="container mx-auto px-4 max-w-6xl">
                 <div className="text-center mb-16">
                     <p className="text-[#ADFF00] mb-4">Contact Us</p>
@@ -19,7 +19,7 @@ export default function ContactHero() {
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8 bg-zinc-900/50 rounded-xl p-8">
+                <div className="grid md:grid-cols-2 gap-8  rounded-xl p-8">
                     {/* Left Column - Contact Information */}
                     <div className="space-y-8">
                         <h2 className="text-2xl font-medium mb-6">Contact Information</h2>

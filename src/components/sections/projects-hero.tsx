@@ -32,12 +32,12 @@ export default function ProjectsHero() {
     const [currentPage, setCurrentPage] = useState(1)
 
     return (
-        <section className="bg-black px-4 py-16 md:py-24">
+        <section className=" px-4 py-16 md:py-24">
             <div className="mx-auto max-w-7xl">
                 <div className="mb-12 text-center">
                     <p className="mb-2 text-sm font-medium text-[#B4FF00]">Our Work</p>
-                    <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl">Our Projects</h1>
-                    <p className="text-gray-400">
+                    <h1 className="mb-4 text-4xl font-bold  md:text-5xl">Our Projects</h1>
+                    <p className="">
                         Learn more about the projects and the team behind it.
                     </p>
                 </div>

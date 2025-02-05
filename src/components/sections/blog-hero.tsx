@@ -8,7 +8,7 @@ import Image from "next/image"
 
 export default function BlogHero() {
     return (
-        <section className="relative min-h-[80vh] w-full bg-black px-4 py-12 text-white">
+        <section className="relative min-h-[80vh] w-full  px-4 py-12 ">
             <div className="container mx-auto max-w-6xl">
                 {/* Hero Text */}
                 <div className="mb-12 text-center">

@@ -26,7 +26,7 @@ export function BlogCard({
     return (
         <Link
             href={href}
-            className="group block rounded-lg bg-gray-900/50 p-4 transition-colors hover:bg-gray-900"
+            className="group block rounded-lg  p-4 transition-colors"
         >
             <div className="relative mb-4 aspect-[4/3] overflow-hidden rounded-lg">
                 <Image
@@ -40,10 +40,10 @@ export function BlogCard({
             <div className="mb-4">
                 <p className="mb-2 text-sm text-[#B4FF00]">{category}</p>
                 <div className="flex items-start justify-between gap-2">
-                    <h3 className="text-xl font-medium text-white">{title}</h3>
-                    <ArrowUpRight className="h-5 w-5 text-gray-400 transition-colors group-hover:text-[#B4FF00]" />
+                    <h3 className="text-xl font-medium">{title}</h3>
+                    <ArrowUpRight className="h-5 w-5  transition-colors group-hover:text-[#B4FF00]" />
                 </div>
-                <p className="mt-2 text-sm text-gray-400">{description}</p>
+                <p className="mt-2 text-sm ">{description}</p>
             </div>
             <div className="flex items-center gap-3">
                 <Image
@@ -54,8 +54,8 @@ export function BlogCard({
                     className="rounded-full object-cover"
                 />
                 <div className="text-sm">
-                    <p className="text-white">{author.name}</p>
-                    <p className="text-gray-400">{author.date}</p>
+                    <p className="">{author.name}</p>
+                    <p className="">{author.date}</p>
                 </div>
             </div>
         </Link>

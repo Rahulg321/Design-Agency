@@ -5,6 +5,7 @@ export default function PricingSection() {
     {
       title: "Design",
       price: "$1,895",
+      productId: "prod_RiZCBGR0w89CaY",
       mainFeatures: [
         { icon: "👤", text: "Designer" },
         { icon: "💎", text: "Top Quality" },
@@ -20,6 +21,7 @@ export default function PricingSection() {
     },
     {
       title: "All-in-One",
+      productId: "prod_RiZDa2FF2nSXQR",
       price: "$2,995",
       highlighted: true,
       mainFeatures: [
@@ -37,10 +39,11 @@ export default function PricingSection() {
       ],
     },
     {
-      title: "No-code Development",
-      price: "$2,295",
+      title: "Mobile App Development",
+      price: "$1,125",
+      productId: "prod_RiZEQfLvd1GtP0",
       mainFeatures: [
-        { icon: "👨‍💻", text: "Nocode Developer" },
+        { icon: "👨‍💻", text: "Mobile Developer" },
         { icon: "💎", text: "Top Quality" },
         { icon: "🔄", text: "1 active task" },
       ],

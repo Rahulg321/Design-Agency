@@ -21,14 +21,14 @@ export default function HowWeWork() {
     ]
 
     return (
-        <section className="w-full bg-black px-4 py-16 md:py-24">
+        <section className="w-full px-4 py-16 md:py-24">
             <div className="container mx-auto">
                 <div className="mb-12 text-center">
                     <p className="mb-4 text-sm font-medium text-[#ADFF00]">Our values</p>
-                    <h2 className="mb-4 text-4xl font-medium text-white md:text-5xl">
+                    <h2 className="mb-4 text-4xl font-medium md:text-5xl">
                         How we work at Untitled
                     </h2>
-                    <p className="text-gray-400">
+                    <p className="">
                         Our shared values keep us connected and guide us as one team.
                     </p>
                 </div>
@@ -37,20 +37,20 @@ export default function HowWeWork() {
                     {steps.map((step) => (
                         <Card
                             key={step.number}
-                            className="group relative flex h-[300px] flex-col justify-between overflow-hidden border-0 bg-[#111] p-6 transition-colors hover:bg-[#161616]"
+                            className="group relative flex h-[300px] flex-col justify-between overflow-hidden border-0 bg-muted p-6 transition-colors "
                         >
                             <div>
-                                <p className="mb-6 text-2xl font-medium text-gray-500">
+                                <p className="mb-6 text-2xl font-medium ">
                                     {step.number}
                                 </p>
-                                <h3 className="mb-4 text-3xl font-medium text-white">
+                                <h3 className="mb-4 text-3xl font-medium ">
                                     {step.title}
                                 </h3>
-                                <p className="text-gray-400">{step.description}</p>
+                                <p className="">{step.description}</p>
                             </div>
                             <div className="absolute bottom-[-12px] right-6">
                                 <ArrowRight
-                                    className="text-white transition-transform group-hover:translate-x-1"
+                                    className=" transition-transform group-hover:translate-x-1"
                                     size={24}
                                 />
                             </div>
