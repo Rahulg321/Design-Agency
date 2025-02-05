@@ -67,8 +67,6 @@ export async function generateMetadata(
   };
 }
 
-
-
 export default async function UserProfilePage({ params }: { params: Promise<{ userId: string }> }) {
 
     let userId = (await params).userId

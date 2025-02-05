@@ -64,9 +64,9 @@ export default function PricingSection() {
           Simple <span className="text-[#F15A2B]">pricing</span>
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
-          {pricingData.map((plan, index) => (
+          {/* {pricingData.map((plan, index) => (
             <PricingCard key={index} {...plan} />
-          ))}
+          ))} */}
         </div>
       </div>
     </section>
